@@ -3,7 +3,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-const TaskList: React.FC = () => {
+const TaskTable: React.FC = () => {
   return (
     <Box textAlign="center">
       <Typography variant="subtitle1" gutterBottom>
@@ -13,4 +13,4 @@ const TaskList: React.FC = () => {
   );
 };
 
-export default TaskList;
+export default TaskTable;
