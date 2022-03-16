@@ -10,13 +10,6 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Rating from "@mui/material/Rating";
 
-type Task = {
-  done: boolean;
-  content: string;
-  deadline: Date | null;
-  priority: number | null;
-};
-
 const initial_tasks: Task[] = [
   {
     done: false,
