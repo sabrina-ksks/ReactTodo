@@ -40,6 +40,7 @@ const RegisterDialogContent: React.FC = () => {
       <DialogContentText>登録するタスクの情報を入力してください．</DialogContentText>
       <Stack spacing={2}>
         <TextField
+          autoFocus
           label="内容"
           value={dialogContent.content}
           onChange={handleContentChange}
