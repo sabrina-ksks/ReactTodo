@@ -2,14 +2,12 @@ import React from 'react';
 
 import { RecoilRoot } from 'recoil';
 
-import TodoAppBar from './components/TodoAppBar';
-import TodoBody from './components/TodoBody';
+import Todo from './components/Todo';
 
 const App: React.FC = () => {
   return (
     <RecoilRoot>
-      <TodoAppBar />
-      <TodoBody />
+      <Todo />
     </RecoilRoot>
   );
 }

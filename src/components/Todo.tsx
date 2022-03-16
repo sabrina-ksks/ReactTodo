@@ -4,18 +4,22 @@ import Box from "@mui/material/Box";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
+import TodoAppBar from "./TodoAppBar"
 import TaskTable from "./TaskTable";
 import RegisterDialog from "./RegisterDialog";
 
-const TodoBody: React.FC = () => {
+const Todo: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
-    <Box padding="2rem" textAlign="center">
-      <TaskTable />
+    <>
+      <TodoAppBar />
+      <Box padding="2rem" textAlign="center">
+        <TaskTable />
+      </Box>
       <Fab
         onClick={handleOpen}
         color="primary"
@@ -29,8 +33,8 @@ const TodoBody: React.FC = () => {
         <AddIcon />
       </Fab>
       <RegisterDialog open={open} onClose={handleClose} />
-    </Box>
+    </>
   );
 };
 
-export default TodoBody;
+export default Todo;
