@@ -1,5 +1,9 @@
 import React from "react";
 
+import { useRecoilValue ,useRecoilState, useResetRecoilState } from "recoil";
+import { dialogContentState } from "../atoms/RegisterDialogContent";
+import { tasksState } from "../atoms/Tasks";
+
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,6 +17,16 @@ type Props = {
 };
 
 const RegisterDialog: React.FC<Props> = ({ open, onClose }) => {
+  const dialogContent = useRecoilValue(dialogContentState);
+  const resetDialogContent = useResetRecoilState(dialogContentState);
+  const [tasks, setTasks] = useRecoilState(tasksState);
+
+  const handleRegister = () => {
+    setTasks([...tasks, dialogContent]);
+    resetDialogContent();
+    onClose();
+  }
+
   return (
     <Dialog
       open={open}
@@ -24,7 +38,7 @@ const RegisterDialog: React.FC<Props> = ({ open, onClose }) => {
       <RegisterDialogContent />
       <DialogActions>
         <Button onClick={onClose} color="primary">戻る</Button>
-        <Button color="primary">登録</Button>
+        <Button onClick={handleRegister} color="primary">登録</Button>
       </DialogActions>
     </Dialog>
   );
