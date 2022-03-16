@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
-import TaskList from "./TaskList";
+import TaskTable from "./TaskTable";
 import RegisterDialog from "./RegisterDialog";
 
 const TodoBody: React.FC = () => {
@@ -15,7 +15,7 @@ const TodoBody: React.FC = () => {
 
   return (
     <Box padding="2rem" textAlign="center">
-      <TaskList />
+      <TaskTable />
       <Fab
         onClick={handleOpen}
         color="primary"
