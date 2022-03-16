@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { useRecoilState } from "recoil";
+import { tasksState } from "../atoms/Tasks";
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,29 +13,8 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Rating from "@mui/material/Rating";
 
-const initial_tasks: Task[] = [
-  {
-    done: false,
-    content: "Reactの学習",
-    deadline: new Date('2022-04-01T12:00'),
-    priority: 5
-  },
-  {
-    done: true,
-    content: "TypeScriptの学習",
-    deadline: new Date('2022-05-01T18:54'),
-    priority: 4
-  },
-  {
-    done: false,
-    content: "MUIの学習",
-    deadline: new Date('2022-10-20T18:54'),
-    priority: 1
-  }
-];
-
 const TaskTable: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>(initial_tasks)
+  const [tasks, setTasks] = useRecoilState(tasksState);
 
   const handleClick = (e: React.MouseEvent<HTMLTableRowElement, MouseEvent>, key: number) => {
     const newTasks = tasks.map((task, index) => {

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { useRecoilState } from "recoil";
+import { dialogContentState } from "../atoms/RegisterDialogContent";
 
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -12,20 +15,24 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import Rating from "@mui/material/Rating";
 
 const RegisterDialogContent: React.FC = () => {
-  const [content, setContent] = useState<string>("");
-  const [deadline, setDeadline] = useState<Date | null>(null);
-  const [priority, setPriority] = useState<number | null>(1);
+  const [dialogContent, setDialogContent] = useRecoilState(dialogContentState);
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    setContent(e.target.value);
+    const newDialogContent = {...dialogContent};
+    newDialogContent.content = e.target.value
+    setDialogContent(newDialogContent);
   };
 
   const handleDeadlineChange = (value: Date | null) => {
-    setDeadline(value);
+    const newDialogContent = {...dialogContent};
+    newDialogContent.deadline = value
+    setDialogContent(newDialogContent);
   };
 
   const handlePriorityChange = (e: React.SyntheticEvent<Element, Event>, value: number | null) => {
-    setPriority(value);
+    const newDialogContent = {...dialogContent};
+    newDialogContent.priority = value
+    setDialogContent(newDialogContent);;
   };
 
   return (
@@ -34,7 +41,7 @@ const RegisterDialogContent: React.FC = () => {
       <Stack spacing={2}>
         <TextField
           label="内容"
-          value={content}
+          value={dialogContent.content}
           onChange={handleContentChange}
           margin="normal"
           placeholder="内容を入力..."
@@ -44,7 +51,7 @@ const RegisterDialogContent: React.FC = () => {
           <DateTimePicker
             renderInput={(params) => <TextField {...params} />}
             label="期限"
-            value={deadline}
+            value={dialogContent.deadline}
             onChange={handleDeadlineChange}
             inputFormat="yyyy/MM/dd HH:mm"
             mask="____/__/__ __:__"
@@ -57,7 +64,7 @@ const RegisterDialogContent: React.FC = () => {
           <Typography mt={2}>優先度</Typography>
           <Box textAlign="center">
             <Rating
-              value={priority}
+              value={dialogContent.priority}
               onChange={handlePriorityChange}
               sx={{
                 fontSize: "3rem"
