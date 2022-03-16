@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useRecoilState } from "recoil";
-import { dialogContentState } from "../atoms/RegisterDialogContent";
+import { dialogContentState } from "../atoms/DialogContent";
 
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";

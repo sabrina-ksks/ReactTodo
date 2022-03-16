@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useRecoilValue ,useRecoilState, useResetRecoilState } from "recoil";
-import { dialogContentState } from "../atoms/RegisterDialogContent";
+import { dialogContentState } from "../atoms/DialogContent";
 import { tasksState } from "../atoms/Tasks";
 
 import Button from "@mui/material/Button";
