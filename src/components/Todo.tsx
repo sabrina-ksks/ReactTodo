@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { useSetRecoilState } from "recoil";
+import { dialogOpenState } from "../atoms/DialogOpen";
 
 import Box from "@mui/material/Box";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
-import TaskList from "./TaskList";
+import TodoAppBar from "./TodoAppBar"
+import TaskTable from "./TaskTable";
 import RegisterDialog from "./RegisterDialog";
 
-const TodoBody: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
+const Todo: React.FC = () => {
+  const setOpen = useSetRecoilState(dialogOpenState);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
-    <Box padding="2rem" textAlign="center">
-      <TaskList />
+    <>
+      <TodoAppBar />
+      <Box padding="2rem" textAlign="center">
+        <TaskTable />
+      </Box>
       <Fab
         onClick={handleOpen}
         color="primary"
@@ -28,9 +34,9 @@ const TodoBody: React.FC = () => {
       >
         <AddIcon />
       </Fab>
-      <RegisterDialog open={open} onClose={handleClose} />
-    </Box>
+      <RegisterDialog />
+    </>
   );
 };
 
-export default TodoBody;
+export default Todo;
