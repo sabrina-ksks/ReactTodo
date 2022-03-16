@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { useSetRecoilState } from "recoil";
+import { dialogOpenState } from "../atoms/DialogOpen";
 
 import Box from "@mui/material/Box";
 import Fab from '@mui/material/Fab';
@@ -9,10 +12,9 @@ import TaskTable from "./TaskTable";
 import RegisterDialog from "./RegisterDialog";
 
 const Todo: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const setOpen = useSetRecoilState(dialogOpenState);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -32,7 +34,7 @@ const Todo: React.FC = () => {
       >
         <AddIcon />
       </Fab>
-      <RegisterDialog open={open} onClose={handleClose} />
+      <RegisterDialog />
     </>
   );
 };
